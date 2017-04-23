@@ -20,8 +20,11 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   $msg = 'Mailen som du skrev in är ogiltig, vänligen försök igen.';
 } else {
   $msg = 'Ditt konto har skapats, <br /> vänligen verifiera det genom att klicka på aktiveringslänken som har skickats till din mail.';
+  //$hash används för att verifiera mailen, har ingenting att göra med lösenordet!
   $hash = md5( rand(0,1000) ); // Generate random 32 character hash and assign it to a local variable.
 // Example output: f4552671f8909587cf485ea990207f3b
+
+//GENERERA ETT RANDOM LÖSENORD OCH SÄTT $password TILL DET!
   $password = rand(1000,5000); // Generate random number between 1000 and 5000 and assign it to a local variable.
 // Example output: 4568
 
