@@ -22,19 +22,15 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   $msg = 'Ditt konto har skapats, <br /> vänligen verifiera det genom att klicka på aktiveringslänken som har skickats till din mail.';
   $hash = md5( rand(0,1000) ); // Generate random 32 character hash and assign it to a local variable.
 // Example output: f4552671f8909587cf485ea990207f3b
-//Hashen används för att verifiera lösenordet
-
   $password = rand(1000,5000); // Generate random number between 1000 and 5000 and assign it to a local variable.
 // Example output: 4568
-//Todo: Generera ett mera random lösenord!
 
   mysqli_query($db, "INSERT INTO users (username, password, email, hash) VALUES(
 '". mysqli_escape_string($db, $name) ."',
 '". mysqli_escape_string($db, md5($password)) ."',
 '". mysqli_escape_string($db, $email) ."',
 '". mysqli_escape_string($db, $hash) ."') ") or die(mysqli_error());
-//Krypterar lösenordet med md5 när det läggs in i databasen, md5 är dock inte säkert att använda, använd en bättre kryptering såsom BlowFish
-//PHP blowfish - http://php.net/manual/en/function.crypt.php
+
 
 $from = "Hallengaming <noreply@hallengaming.se>";
  $to =  $name . "<" . $email . ">";
@@ -56,7 +52,7 @@ https://www.hallengaming.se/loggain/verify.php?email='.$email.'&hash='.$hash.'
  $host = "ssl://send.one.com";
  $port = "465";
  $username = "noreply@hallengaming.se";
- $password = "wizardwizard2014";
+ $password = "XXX";
 
  $headers = array ('From' => $from,
    'To' => $to,

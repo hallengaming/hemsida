@@ -12,66 +12,25 @@ if (mysqli_connect_errno()) {
 }
 
 if(isset($_POST['name']) && !empty($_POST['name']) AND isset($_POST['email']) && !empty($_POST['email'])){
-  
+
 $name = mysqli_escape_string($db, $_POST['name']);
 $email = mysqli_escape_string($db, $_POST['email']);
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  $msg = 'Mailen som du skrev in är ogiltig, vänligen försök igen.';
+  #Ändra medelande
+	$msg = 'Mailen som du skrev in är ogiltig, vänligen försök igen.';
 } else {
-  $msg = 'Ditt konto har skapats, <br /> vänligen verifiera det genom att klicka på aktiveringslänken som har skickats till din mail.';
-  $hash = md5( rand(0,1000) ); // Generate random 32 character hash and assign it to a local variable.
-// Example output: f4552671f8909587cf485ea990207f3b
-  $password = rand(1000,5000); // Generate random number between 1000 and 5000 and assign it to a local variable.
-// Example output: 4568
-
+	#Ändra medelande
+  $msg = 'Ditt konto har skapats, <br /> vänligen verifiera det genom att klicka på aktiveringslänken som har skickats till din mail.';	
+	
+	#INSERT INTO Nyheter, ändra insättningen
+	
   mysqli_query($db, "INSERT INTO users (username, password, email, hash) VALUES(
 '". mysqli_escape_string($db, $name) ."', 
 '". mysqli_escape_string($db, md5($password)) ."', 
 '". mysqli_escape_string($db, $email) ."', 
 '". mysqli_escape_string($db, $hash) ."') ") or die(mysqli_error());
-
-  
-$from = "Hallengaming <noreply@hallengaming.se>";
- $to =  $name . "<" . $email . ">";
- $subject = "Registrering | Verifikation";
- $body = '
-
-Tack för att du har registrerat dig!
-Ditt konto på hallengaming.se har skapats, du kan logga in med följande inloggningsuppgifter efter du har aktiverat ditt konto genom att klicka på länken nedan.
  
-------------------------
-Användarnamn: '.$name.'
-Lösenord: '.$password.'
-------------------------
- 
-Vänligen klicka på följande länk för att aktivera ditt konto:
-https://www.hallengaming.se/loggain/verify.php?email='.$email.'&hash='.$hash.'
-';
- 
- $host = "ssl://send.one.com";
- $port = "465";
- $username = "noreply@hallengaming.se";
- $password = "wizardwizard2014";
- 
- $headers = array ('From' => $from,
-   'To' => $to,
-   'Subject' => $subject);
- $smtp = Mail::factory('smtp',
-   array ('host' => $host,
-     'port' => $port,
-     'auth' => true,
-     'username' => $username,
-     'password' => $password));
- 
- $mail = $smtp->send($to, $headers, $body);
- 
- if (PEAR::isError($mail)) {
-   $msg = "Mailet kunde ej skickas, kontakta Arch Web Wizard.";
-   //echo("<p>" . $mail->getMessage() . "</p>");
-  } else {
-   
-  } 
 }
 }
 ?>
