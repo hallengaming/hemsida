@@ -5,6 +5,21 @@ require_once "Mail.php";
 include("config.php");
 //$db = mysqli_connect("localhost", "my_user", "my_password", "world");
 
+function random_str(
+    $length,
+    $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+) {
+    $str = '';
+    $max = mb_strlen($keyspace, '8bit') - 1;
+    if ($max < 1) {
+        throw new Exception('$keyspace must be at least two characters long');
+    }
+    for ($i = 0; $i < $length; ++$i) {
+        $str .= $keyspace[random_int(0, $max)];
+    }
+    return $str;
+}
+
 /* check connection */
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
@@ -25,8 +40,8 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 // Example output: f4552671f8909587cf485ea990207f3b
 
 //GENERERA ETT RANDOM LÖSENORD OCH SÄTT $password TILL DET!
-  $password = rand(1000,5000); // Generate random number between 1000 and 5000 and assign it to a local variable.
-// Example output: 4568
+  $password = random_str(18); // Generate random string and assign it to a local variable.
+// Example output: UyLKVS1X6t0K29nHWi
 
   mysqli_query($db, "INSERT INTO users (username, password, email, hash) VALUES(
 '". mysqli_escape_string($db, $name) ."',
