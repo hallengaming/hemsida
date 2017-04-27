@@ -1,5 +1,6 @@
 <?php
 require_once "Mail.php";
+session_start();
 
 // if(!isset($db)){}
 include("config.php");
@@ -11,27 +12,16 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-if(isset($_POST['name']) && !empty($_POST['name']) AND isset($_POST['email']) && !empty($_POST['email'])){
+if(isset($_POST['datum']) && !empty($_POST['datum']) AND isset($_POST['text']) && !empty($_POST['text'])){
 
-$name = mysqli_escape_string($db, $_POST['name']);
-$email = mysqli_escape_string($db, $_POST['email']);
+$datum = mysqli_escape_string($db, $_POST['datum']);
+$text = mysqli_escape_string($db, $_POST['text']);
+$user=$_SESSION['login_user'];
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  #Ändra medelande
-	$msg = 'Mailen som du skrev in är ogiltig, vänligen försök igen.';
-} else {
-	#Ändra medelande
-  $msg = 'Ditt konto har skapats, <br /> vänligen verifiera det genom att klicka på aktiveringslänken som har skickats till din mail.';	
-	
-	#INSERT INTO Nyheter, ändra insättningen
-	
-  mysqli_query($db, "INSERT INTO users (username, password, email, hash) VALUES(
-'". mysqli_escape_string($db, $name) ."', 
-'". mysqli_escape_string($db, md5($password)) ."', 
-'". mysqli_escape_string($db, $email) ."', 
-'". mysqli_escape_string($db, $hash) ."') ") or die(mysqli_error());
- 
-}
+  mysqli_query($db, "INSERT INTO Nyheter (datum, nyhettext, user) VALUES(
+'". mysqli_escape_string($db, $datum) ."',
+'". mysqli_escape_string($db, $text) ."',
+'". mysqli_escape_string($db, $user) ."') ") or die(mysqli_error());
 }
 ?>
 <!DOCTYPE html>
@@ -59,7 +49,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       <div class="content">
         <div class="panel" id="login">
           <h3>Lägg upp en nyhet</h3>
-          
+
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" role="form">
             <div class="form-group">
               <label for="date">Datum</label>
