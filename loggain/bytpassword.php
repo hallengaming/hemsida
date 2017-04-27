@@ -14,10 +14,10 @@ if (mysqli_connect_errno()) {
 if(isset($_POST['email']) && !empty($_POST['email'])){
 
 $email = mysqli_escape_string($db, $_POST['email']);
-  
-$search = mysqli_query($db, "SELECT email, hash, active FROM users WHERE email='".$email."' AND active='1'") or die(mysql_error()); 
+
+$search = mysqli_query($db, "SELECT email, hash, active FROM users WHERE email='".$email."' AND active='1'") or die(mysql_error());
 $match  = mysqli_num_rows($search);
-        
+
 if($match > 0){
   // We have a match, activate the account
   $from = "Hallengaming <noreply@hallengaming.se>";
@@ -25,18 +25,18 @@ if($match > 0){
  $subject = "Registrering | Verifikation";
  $body = '
 Du har begärt att ändra ditt lösenord på https://www.hallengaming.se
- 
+
 Vänligen klicka på följande länk för att ändra ditt lösenord:
 https://www.hallengaming.se/loggain/changepassword.php?email='.$email.'&hash='.$hash.'
 
 Om du har fått det här mailet men inte har skapat ett konto på hallengaming.se, vänligen kontakta aww@hallengaming.se
 ';
- 
+
  $host = "ssl://send.one.com";
  $port = "465";
  $username = "noreply@hallengaming.se";
  $password = "wizardwizard2014";
- 
+
  $headers = array ('From' => $from,
    'To' => $to,
    'Subject' => $subject);
@@ -46,9 +46,9 @@ Om du har fått det här mailet men inte har skapat ett konto på hallengaming.s
      'auth' => true,
      'username' => $username,
      'password' => $password));
- 
+
  $mail = $smtp->send($to, $headers, $body);
- 
+
  if (PEAR::isError($mail)) {
    $error = "Mailet kunde ej skickas, kontakta Arch Web Wizard.";
    //echo("<p>" . $mail->getMessage() . "</p>");
@@ -82,7 +82,7 @@ Om du har fått det här mailet men inte har skapat ett konto på hallengaming.s
   <body>
     <div class="page-wrap gradient-primary">
       <div class="container">
-        <h1 class="logo"><a href="../index.php" title="Hällens Gaming">Hällens Gaming - Registrering</a></h1>
+        <h1 class="logo"><a href="../index.php" title="Hällen Gaming">Hällen Gaming - Registrering</a></h1>
         <div class="content">
           <div class="panel" id="login">
             <h3>Glömt lösenord?</h3>
@@ -91,7 +91,7 @@ Om du har fått det här mailet men inte har skapat ett konto på hallengaming.s
                    echo "<p>" . $msg . "</p>";
                  }
             ?>
-            <div 
+            <div
                  <?php
                  if(isset($msg)){
                    echo 'style="display: none;"';

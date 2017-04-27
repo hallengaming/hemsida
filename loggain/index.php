@@ -1,43 +1,43 @@
 <?php
 session_start();
 // if request is not secure, redirect to secure url
-if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
+/*if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
     $url = 'https://' . $_SERVER['HTTP_HOST']
                       . $_SERVER['REQUEST_URI'];
 
     header('Location: ' . $url);
     exit;
-}
+}*/
 // if request is not secure, redirect to secure url
 
    include("config.php");
 
    session_start();
-   
+
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
+      // username and password sent from form
       if(isset($_POST['username']) && !empty($_POST['username']) AND isset($_POST['password']) && !empty($_POST['password'])){
       $username = mysqli_real_escape_string($db,$_POST['username']);
-      $password = mysqli_real_escape_string($db, md5($_POST['password'])); 
-      
+      $password = mysqli_real_escape_string($db, md5($_POST['password']));
+
       $sql = "SELECT username, password, active FROM users WHERE username='".$username."' AND password='".$password."' AND active='1'";
       $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['active'];
-      
+
       $count = mysqli_num_rows($result);
-      
+
       // If result matched $myusername and $mypassword, table row must be 1 row
-		
+
       if($count == 1) {
-				
+
 				$_SESSION['login_user']= $username;
 				header("location: hem.php");
-					
+
       } else {
          $msg = "Ditt användarnamn eller lösenord är ogilitgt!";
       }
-			
+
 			}
    }
 ?>
@@ -62,7 +62,7 @@ if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
 <body>
   <div class="page-wrap gradient-primary">
     <div class="container">
-      <h1 class="logo"><a href="../index.php" title="Hällens Gaming">Hällens Gaming</a></h1>
+      <h1 class="logo"><a href="../index.php" title="Hällen Gaming">Hällen Gaming</a></h1>
       <div class="content">
         <div class="panel" id="login">
           <h3>Logga in på ditt konto</h3>

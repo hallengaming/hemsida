@@ -18,7 +18,7 @@
           mysqli_query($db, "UPDATE users SET active='1' WHERE email='".$email."' AND hash='".$hash."' AND active='0'") or die(mysql_error());
           $msg = 'Ditt konto har aktiverats, du kan nu logga in.';
           #visa en form där användaren kan välja displayname och ett nytt password
-          
+
         }else{
           // No match -> invalid url or account has already been activated.
           $msg = 'Addressen är antingen ogilitig eller så har du redan aktiverat ditt konto.';
@@ -49,7 +49,7 @@
 <body>
   <div class="page-wrap gradient-primary">
     <div class="container">
-      <h1 class="logo"><a href="../index.php" title="Hällens Gaming">Hällens Gaming</a></h1>
+      <h1 class="logo"><a href="../index.php" title="Hällen Gaming">Hällen Gaming</a></h1>
       <div class="content">
         <div class="panel" id="login">
           <h3>Verifikation</h3>

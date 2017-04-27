@@ -8047,10 +8047,10 @@ h1.logo {
 
 h1.logo a {
   display: inline-block;
-  height: 54px;
-  width: 180px;
+  height: 74px;
+  width: 221px;
   overflow: hidden;
-  background: url("../img/logo.png");
+  background: url("../img/menu_logo.png");
   background-repeat: repeat
 }
 

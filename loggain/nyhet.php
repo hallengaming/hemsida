@@ -45,7 +45,7 @@ $user=$_SESSION['login_user'];
 <body>
   <div class="page-wrap gradient-primary">
     <div class="container">
-      <h1 class="logo"><a href="../index.php" title="Hällens Gaming">Hällens Gaming - Registrering</a></h1>
+      <h1 class="logo"><a href="../index.php" title="Hällen Gaming">Hällen Gaming - Registrering</a></h1>
       <div class="content">
         <div class="panel" id="login">
           <h3>Lägg upp en nyhet</h3>
