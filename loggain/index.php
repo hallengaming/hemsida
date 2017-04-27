@@ -1,13 +1,13 @@
 <?php
 session_start();
 // if request is not secure, redirect to secure url
-/*if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
+if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
     $url = 'https://' . $_SERVER['HTTP_HOST']
                       . $_SERVER['REQUEST_URI'];
 
     header('Location: ' . $url);
     exit;
-}*/
+}
 // if request is not secure, redirect to secure url
 
    include("config.php");
