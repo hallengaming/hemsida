@@ -10,7 +10,7 @@ $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 $login_session =$row['username'];
 
 if(!isset($login_session)){
-mysqli_close($connection); // Closing Connection
+mysqli_close($db); // Closing Connection
 header('Location: index.php'); // Redirecting To Home Page
 } else {
   $user_is_valid = true;
