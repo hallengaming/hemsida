@@ -45,13 +45,13 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
   mysqli_query($db, "INSERT INTO users (username, password, email, hash) VALUES(
 '". mysqli_escape_string($db, $name) ."',
-'". mysqli_escape_string($db, md5($password)) ."',
+'". mysqli_escape_string($db, password_hash($password, PASSWORD_DEFAULT)) ."',
 '". mysqli_escape_string($db, $email) ."',
 '". mysqli_escape_string($db, $hash) ."') ") or die(mysqli_error());
 
 
 $from = "Hallengaming <noreply@hallengaming.se>";
- $to =  $name . "<" . mail_password . ">";
+ $to =  $name . "<" . $email . ">";
  $subject = "Registrering | Verifikation";
  $body = '
 
@@ -70,7 +70,7 @@ https://www.hallengaming.se/loggain/verify.php?email='.$email.'&hash='.$hash.'
  $host = "ssl://send.one.com";
  $port = "465";
  $username = "noreply@hallengaming.se";
- $password = "XXX";
+ $password = mail_password;
 
  $headers = array ('From' => $from,
    'To' => $to,
@@ -121,9 +121,9 @@ https://www.hallengaming.se/loggain/verify.php?email='.$email.'&hash='.$hash.'
 
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" role="form">
             <div class="form-group">
-              <label for="name">Namn</label>
+              <label for="name">Användarnamn</label>
               <div class="input-icon icon-username"></div>
-              <input autofocus="true" class="form-control" id="name" name="name" placeholder="Namn" tabindex="1" type="text" />
+              <input autofocus="true" class="form-control" id="name" name="name" placeholder="Användarnamn" tabindex="1" type="text" />
             </div>
             <div class="form-group">
               <label for="email">Email</label>

@@ -12,25 +12,36 @@ include('ensure_ssl.php');
       // username and password sent from form
       if(isset($_POST['username']) && !empty($_POST['username']) AND isset($_POST['password']) && !empty($_POST['password'])){
       $username = mysqli_real_escape_string($db,$_POST['username']);
-      $password = mysqli_real_escape_string($db, md5($_POST['password']));
+      $password = mysqli_real_escape_string($db, $_POST['password']);
 
-      $sql = "SELECT username, password, active FROM users WHERE username='".$username."' AND password='".$password."' AND active='1'";
+      //---------------------------------------------------------------
+      $sql = "SELECT username, password, active FROM users WHERE username='".$username."' AND active='1'";
+      //$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+      //$sql = "SELECT username, password, active FROM users WHERE username='".$username."' AND password='".$password."' AND active='1'";
       $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-
+      //$active = $row['active'];
       $count = mysqli_num_rows($result);
 
       // If result matched $myusername and $mypassword, table row must be 1 row
 
       if($count == 1) {
 
-				$_SESSION['login_user']= $username;
-				header("location: hem.php");
+        $db_hash = $row['password'];
+
+        if(password_verify($password, $db_hash)){
+          $_SESSION['login_user']= $username;
+  				header("location: hem.php");
+        } else {
+          $msg = "Ditt användarnamn eller lösenord är ogilitgt!";
+        }
 
       } else {
-         $msg = "Ditt användarnamn eller lösenord är ogilitgt!";
+         $msg = "Ditt användarnamn är ej registrerat!";
       }
+
+      //--------------------------------------------------------------
 
 			}
    }

@@ -17,7 +17,8 @@
           // We have a match, activate the account
           mysqli_query($db, "UPDATE users SET active='1' WHERE email='".$email."' AND hash='".$hash."' AND active='0'") or die(mysql_error());
           $msg = 'Ditt konto har aktiverats, du kan nu logga in.';
-          #visa en form där användaren kan välja displayname och ett nytt password
+          //visa en form där användaren kan välja displayname och ett nytt password
+          //Eller hämta resten av informationen direkt från Google Drive.
 
         }else{
           // No match -> invalid url or account has already been activated.
