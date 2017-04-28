@@ -1,4 +1,6 @@
 <?php
+   define('mail_password', 'XXX')
+   
    define('DB_SERVER', 'XXX');
    define('DB_USERNAME', 'XXX');
    define('DB_PASSWORD', 'XXX');

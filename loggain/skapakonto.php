@@ -51,7 +51,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 
 $from = "Hallengaming <noreply@hallengaming.se>";
- $to =  $name . "<" . $email . ">";
+ $to =  $name . "<" . mail_password . ">";
  $subject = "Registrering | Verifikation";
  $body = '
 
