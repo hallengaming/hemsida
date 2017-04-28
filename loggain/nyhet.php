@@ -1,5 +1,5 @@
 <?php
-require_once "Mail.php";
+
 session_start();
 
 // if(!isset($db)){}
