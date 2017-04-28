@@ -1,5 +1,5 @@
 <?php
-/*session_start();
+session_start();
 include("config.php");
 
 $user_check=$_SESSION['login_user'];
@@ -14,5 +14,5 @@ mysqli_close($connection); // Closing Connection
 header('Location: index.php'); // Redirecting To Home Page
 } else {
   $user_is_valid = true;
-}*/
+}
 ?>
