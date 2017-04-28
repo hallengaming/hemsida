@@ -4,3 +4,5 @@ Den oficiella hemsidan till Hällen Gaming
 
 # Progression
 [Trello](https://trello.com/b/rWArqpL7)
+
+Se hemsidan live på [hallengaming.se](https://hallengaming.se)
