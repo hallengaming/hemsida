@@ -1,11 +1,10 @@
 [![Stories in Ready](https://badge.waffle.io/hallengaming/hemsida.png?label=ready&title=Ready)](https://waffle.io/hallengaming/hemsida)
 # hallengaming.se
 Den oficiella hemsidan till Hällen Gaming
+Se hemsidan live på [hallengaming.se](https://hallengaming.se)
 
 # Progression
 [Trello](https://trello.com/b/rWArqpL7)
-
-Se hemsidan live på [hallengaming.se](https://hallengaming.se)
 
 # Kör koden lokalt
 För att köra koden lokalt, gör följande;
