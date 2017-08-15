@@ -29,6 +29,7 @@ if(isset($user_check)){
 <h1 class="h2">Du är nu inloggad!</h1>
 <hr>
 <h1><a href="loggaut.php">Logga ut</a></h1>
+<h1><a href="faq.php">Answer frequent asked questions.</a></h1>
 <h1>Ändra Lösenord</h1>
 <h1>Se användaruppgifter</h1>
 <h1>Se lista på alla saker i skåpet</h1>
@@ -37,7 +38,7 @@ if(isset($user_check)){
 </body>
 </html>
 	';
-} else {
+} else { 
   header('Location: ' . "index.php");
-}
+} UNCOMMENT!
 ?>

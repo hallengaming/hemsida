@@ -14,9 +14,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icon-72.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icon-114.png">-->
     <link href="css/main.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/faq.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-
     <div id="viewport" class="">
       <div id="viewport-content">
         <div id="page" class="page homepage">
@@ -72,18 +72,61 @@
       </div>
 
       <div id="kropp">
-        <h1>
-          Viktiga datum
-				</h1>
-        <p>
-          <b>10/6</b> - Vi är på övervåningen <br />
-					<b>14-16/4</b> - Gothcon <br />
-					<b>25-28/5</b> - Lincon
-					<b>Sommarlov</b> - Vanliga tider
-        </p>
+        <h1 style="margin-bottom: 0;">Frequently Asked Questions:</h1>
+        <br>
+
+        <?php
+          include("loggain/config.php");
+        ?>
+
+        <?php
+        		if ($db->connect_error) {
+             die("Connection failed: " . $db->connect_error);
+        }
+        echo "<nav id='table' role='navigation' class='table-of-contents'>
+      <h2 style='margin-bottom: 2;
+                  font-size:220%;''>On this page:</h2>";
+        $sql = "SELECT question, answer, user, reg_time, id FROM faq";
+        $result = $db->query($sql);
+
+        if ($result->num_rows > 0) {
+             // output data of each row
+             echo "<ul style='list-style-type:disc'>";
+             while($row = $result->fetch_assoc()) {
+                 echo "<li><a href=faq.php#" . $row["id"] . ">" . $row["question"] . "</a></li>";
+             }
+             echo "</ul>";
+           } else {
+                echo "<h2>Ingen har frågat något!</h2>";
+           }
+          echo "</nav>";?>
+
+<?php
+//include("loggain/config.php");
+ if ($db->connect_error) {
+   die("Connection failed: " . $db->connect_error);
+}
+$sql = "SELECT question, answer, user, reg_time, id FROM faq";
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+      echo "<button id=". $row["id"] . " class='accordion'><b>". $row["question"] . "</b></button>
+            <div class='panel'>
+            <p><i style='font-size:90%;'>" . $row["answer"] . "</i><br></p>
+            <p><i style='font-size: 1rem;'>". $row["user"]. " - " . $row["reg_time"] . ";</i></p>
+      </div>";
+  }
+} else {
+  echo "<h2>Ingen har frågat något!</h2>";
+}
+
+$db->close();
+?>
+
       </div>
     </div>
-
-
+    <script src="js/FAQ.js"></script>
   </body>
 </html>

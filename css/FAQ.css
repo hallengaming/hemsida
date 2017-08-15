@@ -1,0 +1,97 @@
+@media (max-width: 1168px)
+{
+	#table{
+		display: none;
+	}
+}
+.table-of-contents {
+	float: right;
+	width: 30%;
+	background: #1c373e;
+	font-size: 0.8em;
+	padding: 1em 3em 1em 0;
+	margin: 0 0 0.5em 0.5em;
+}
+.table-of-contents ul {
+	padding: 0;
+}
+.table-of-contents a {
+	text-decoration: none;
+  color: #fff;
+}
+.table-of-contents h2 {
+  width: auto;
+}
+.table-of-contents h3 {
+  width: auto;
+}
+.table-of-contents a:hover,
+.table-of-contents a:active {
+	text-decoration: underline;
+}
+
+button.accordion {
+    background-color: #102b32;
+    color: #fff;
+    cursor: pointer;
+    padding: 18px;
+    width: 65%;
+		height: auto;
+    text-align: left;
+    border: none;
+    outline: none;
+		font-size: 15px;
+    transition: 0.4s;
+}
+button.accordion.active, button.accordion:hover {
+    background-color: #102b32;
+}
+div.panel {
+    padding: 0 0 0 18px;
+    background-color: #102b32;
+		max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+		width: 65%;
+}
+button.accordion:before {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: left;
+    margin-right: 5px;
+}
+button.accordion.active:before {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+button:target {
+animation: highlight 1s ease;
+}
+@keyframes highlight {
+from { background: #17434f; }
+to { background: #1c373e; }
+}
+#kropp{
+  margin: 10px;
+  padding: 10px;
+  text-align: left;
+  padding-top: 20px;
+}
+h2{
+  font-weight: normal;
+  font-size: 1.6rem;
+  margin: 0 1rem 1.6rem;
+  padding: 0;
+  width: 60vw;
+}
+
+p{
+  color: #fff;
+	width: 100%;
+	margin: 0rem 0rem 0rem !important;
+	-webkit-margin-before: 0em;
+-webkit-margin-after: 0em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+}

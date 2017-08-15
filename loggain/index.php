@@ -1,7 +1,7 @@
 <?php
 session_start();
 // if request is not secure, redirect to secure url
-include('ensure_ssl.php');
+//include('ensure_ssl.php');
 // if request is not secure, redirect to secure url
 
    include("config.php");
